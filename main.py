@@ -2,22 +2,24 @@ import os
 from Pedido import Pedido
 from Cliente import Cliente
 from Produto import Produto
+from ItemPedido import ItemPedido
 
 os.system("cls")
+#Cadastrar Cliente
+novoCli = Cliente(nome="João Desenvolvedor", cpf="03344455512", 
+            email="joao@dev.com", endereco="Rua Tal, nº00",tel="6799999999")
 
+#Cadastrar Produto
+siri = Produto(cod=1, desc="Hambúrguer de Siri", categoria="Lanche",
+             preco=20.55)
+refri = Produto(cod=2, desc="Tubaíana", categoria="Bebidas",
+             preco=5.6)
 
-#cadastro do cliente
-novoCliente = Cliente(endereco="Rua Vital Brasil", email="joao@gmail.com",
-                      cpf="033888665598", nome="João Desenvolvedor", tel="679988-6677")
-novoCliente.imprimeFicha()
+#pedido
+item1 =  ItemPedido(produto=siri,obs="Cebola Extra",  qtd=2, desconto=2)
+item2 = ItemPedido(produto=refri, obs="",  qtd=2, desconto=0)
 
-#novo pedido
-novoPedido = Pedido(1, "14/09/2026", "21:10", novoCliente,
-                    ["X-Salada", "X-bacon"], "Pix")
-novoPedido.imprimirPedido()
+itens = [item1,item2]
 
-
-#cria produto
-xbacon =  Produto(cod="P01", desc="X-Bacon", categoria="Lanche", preco=19.90)
-xbacon.imprimeProduto()
-#criar um ItemPedido
+pedido = Pedido(cliente=novoCli, data="28/09/2026", hora="21:30",
+                itens=itens, pag="pix",num=1) 
