@@ -4,22 +4,49 @@ from Cliente import Cliente
 from Produto import Produto
 from ItemPedido import ItemPedido
 
-os.system("cls")
-#Cadastrar Cliente
-novoCli = Cliente(nome="João Desenvolvedor", cpf="03344455512", 
-            email="joao@dev.com", endereco="Rua Tal, nº00",tel="6799999999")
+def menuCliente():
+    while True:
+        os.system("cls")
+        print("----  Clientes 👤 ----\n"+
+            "1 - 📄 Cadastrar\n"+
+            "2 - 🔎 Listar\n"+
+            "3 - 📝 Alterar\n"+
+            "4 - ❌ Excluir\n"+
+            "0 - ⬅️ Sair\n")
+        opcao = input("Digite a opção escolhida:")
 
-#Cadastrar Produto
-siri = Produto(cod=1, desc="Hambúrguer de Siri", categoria="Lanche",
-             preco=20.55)
-refri = Produto(cod=2, desc="Tubaíana", categoria="Bebidas",
-             preco=5.6)
+        if opcao=="0":
+            break
 
-#pedido
-item1 =  ItemPedido(produto=siri,obs="Cebola Extra",  qtd=2, desconto=2)
-item2 = ItemPedido(produto=refri, obs="",  qtd=2, desconto=0)
+def menuProduto():
+    while True:
+        os.system("cls")
+        print("----  Produtos 📦 ----\n"+
+            "1 - 📄 Cadastrar\n"+
+            "2 - 🔎 Listar\n"+
+            "3 - 📝 Alterar\n"+
+            "4 - ❌ Excluir\n"+
+            "0 - ⬅️ Sair\n")
+        opcao = input("Digite a opção escolhida:")
 
-itens = [item1,item2]
+        if opcao=="0":
+            break
 
-pedido = Pedido(cliente=novoCli, data="28/09/2026", hora="21:30",
-                itens=itens, pag="pix",num=1) 
+##main
+if __name__ == "__main__":
+    while True:
+        os.system("cls")
+        print("---- Sistema Lanchonete 🥪 ----\n"
+            "1 - 👤 Clientes\n"+
+            "2 - 📦 Produtos\n"+
+            "3 - 🛒 Novo Pedido\n"+
+            "0 - ⬅️ Sair\n")
+        opcao = input("Digite a opção escolhida:")
+
+        if opcao=="0":
+            break
+        elif opcao=="1":
+            menuCliente()
+        elif opcao=="2":
+            menuProduto()
+    print("\n bye!\n ( ﾟдﾟ)✌️   ")
