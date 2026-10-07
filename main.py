@@ -7,6 +7,17 @@ from ItemPedido import ItemPedido
 listaClientes = []
 listaProdutos = []
 
+def buscarCliente(cpf) -> int:
+    i=0
+    for cliente in listaClientes:
+        if cliente.cpf==cpf:
+            return i
+        i=i+1
+    return None
+
+
+
+
 def menuCliente():
     while True:
         os.system("cls")
@@ -15,7 +26,7 @@ def menuCliente():
             "2 - 🔎 Listar Cliente\n"+
             "3 - 📝 Alterar Cliente\n"+
             "4 - ❌ Excluir Cliente\n"+
-            "0 - ⬅️ Sair\n")
+            "0 - ⬅️ Voltar\n")
         opcao = input("Digite a opção escolhida:")
 
         if opcao=="0":
@@ -38,6 +49,19 @@ def menuCliente():
                 cliente.imprimeFicha()
             input("\n\nDigite algo para voltar.")
 
+        elif opcao =="3":
+             input("\nEm desenvolvimento.... \nDigite algo para voltar.")
+        elif opcao =="4":
+            os.system("cls")
+            print("---- ❌ Excluír Cliente  ----\n")
+            cpf = input("Informe o CPF para a Exclusão:\n")
+            posicao = buscarCliente(cpf)
+            if posicao!=None:
+                listaClientes.pop(posicao)
+                input("\nExcluído com sucesso!.... \n\nDigite algo para voltar.")
+            else:
+                input(f"\n!Não {cpf} encontrado.... \n\nDigite algo para voltar.")
+
 def menuProduto():
     while True:
         os.system("cls")
@@ -46,7 +70,7 @@ def menuProduto():
             "2 - 🔎 Listar Produto\n"+
             "3 - 📝 Alterar Produto\n"+
             "4 - ❌ Excluir Produto\n"+
-            "0 - ⬅️ Sair\n")
+            "0 - ⬅️ Voltar\n")
         opcao = input("Digite a opção escolhida:")
 
         if opcao=="0":
@@ -66,9 +90,8 @@ def menuProduto():
             for produto in listaProdutos:
                 produto.imprimeProduto()
             input("\n\nDigite algo para voltar.")
+        
             
-
-
 ##main
 if __name__ == "__main__":
     while True:
