@@ -114,7 +114,7 @@ def menuProduto():
         elif opcao =="3":
             os.system("cls")
             print("---- 📝 Alterar Produto  ----\n")
-            cod = input("Informe o CPF do Cliente:")
+            cod = input("Informe o Codigo do Produto:")
             posicao=buscarProduto(cod)
             if posicao is None:    
                 input(f"\nProduto {cod} não encontrado!.... \n\nDigite algo para voltar.")
@@ -123,7 +123,7 @@ def menuProduto():
                 prod.descricao=input(f"Descrição: {prod.descricao} trocar para:")
                 prod.categoria=input(f"categoria: {prod.categoria} trocar para:")
                 prod.preco=float(input(f"preco: {prod.preco} trocar para:"))            
-                listaProdutos[listaProdutos]=prod
+                listaProdutos[posicao]=prod
                 input(f"\n!Produto alterado com sucesso.... \n\nDigite algo para voltar.")
         elif opcao =="4":
             os.system("cls")
