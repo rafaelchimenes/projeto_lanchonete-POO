@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from Pedido import Pedido
 from Cliente import Cliente
 from Produto import Produto
@@ -6,6 +7,7 @@ from ItemPedido import ItemPedido
 
 listaClientes = []
 listaProdutos = []
+listaPedidos = []
 
 def buscarCliente(cpf) -> int:
     i=0
@@ -22,7 +24,6 @@ def buscarProduto(cod) ->int:
             posicao=i
             break
     return posicao
-
 
 def menuCliente():
     while True:
@@ -154,4 +155,42 @@ if __name__ == "__main__":
             menuCliente()
         elif opcao=="2":
             menuProduto()
+        elif opcao=="3":
+            num = len(listaPedidos)+1
+            leitura = str(datetime.today()) #from datetime import datetime
+            data= leitura[0:10]
+            hora= leitura[11:16]
+            pag=input("Informe o tipo de pagamento:")
+
+            cpf = input("Informe o CPF do Cliente:")
+            posicao=buscarCliente(cpf)
+            if posicao is None:
+                print("Cliente não encontrado")
+            else:
+                cliente = listaClientes[posicao]
+                listaItens = []
+                cod = input("Informe o cod. do Produto:")
+                posicao = buscarProduto(cod)
+                if posicao is None: 
+                    print("Produto não encontrado") 
+                else: 
+                    produto=listaProdutos[posicao]
+                    qtd=int(input("Quantidade:"))
+                    obs= input("Observação:")
+                    desconto=float(input("Desconto:"))
+                    item = ItemPedido(produto=produto, qtd=qtd,
+                                       obs=obs, desconto=desconto)
+                    listaItens.append(item)
+           
+                    pedido =  Pedido(num=num,data=data, hora=hora,
+                                      cliente=cliente, itens=listaItens, 
+                                      pag=pag)
+                    pedido.imprimirPedido()
+                    listaPedidos.append(pedido)
+            input("Digite algo para voltar")##fora dos if
+            
+            
+            
+
+
     print("\n bye!\n ( ﾟдﾟ)✌️   ")
