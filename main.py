@@ -169,24 +169,27 @@ if __name__ == "__main__":
             else:
                 cliente = listaClientes[posicao]
                 listaItens = []
-                cod = input("Informe o cod. do Produto:")
-                posicao = buscarProduto(cod)
-                if posicao is None: 
-                    print("Produto não encontrado") 
-                else: 
-                    produto=listaProdutos[posicao]
-                    qtd=int(input("Quantidade:"))
-                    obs= input("Observação:")
-                    desconto=float(input("Desconto:"))
-                    item = ItemPedido(produto=produto, qtd=qtd,
-                                       obs=obs, desconto=desconto)
-                    listaItens.append(item)
+                while(True):
+                    cod = input("Informe o cod. do Produto ou 0 para voltar:")
+                    if cod=="0":
+                        break
+                    posicao = buscarProduto(cod)
+                    if posicao is None: 
+                        print("Produto não encontrado") 
+                    else: 
+                        produto=listaProdutos[posicao]
+                        qtd=int(input("Quantidade:"))
+                        obs= input("Observação:")
+                        desconto=float(input("Desconto:"))
+                        item = ItemPedido(produto=produto, qtd=qtd,
+                                        obs=obs, desconto=desconto)
+                        listaItens.append(item)
            
-                    pedido =  Pedido(num=num,data=data, hora=hora,
-                                      cliente=cliente, itens=listaItens, 
-                                      pag=pag)
-                    pedido.imprimirPedido()
-                    listaPedidos.append(pedido)
+                pedido =  Pedido(num=num,data=data, hora=hora,
+                                    cliente=cliente, itens=listaItens, 
+                                    pag=pag)
+                pedido.imprimirPedido()
+                listaPedidos.append(pedido)
             input("Digite algo para voltar")##fora dos if
             
             
